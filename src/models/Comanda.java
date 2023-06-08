@@ -1,18 +1,19 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Comanda {
     private int Numero;
-    private float ValorTotal;
-
-    private List<ItemComanda> ItensComanda;
+    private double ValorTotal;
+    private List<Produto> Produto = new ArrayList<>();
+    private Garcom Garcom;
 
     public Comanda(){
 
     }
 
-    public Comanda(int numero, float valorTotal){
+    public Comanda(int numero, double valorTotal){
         Numero = numero;
         ValorTotal = valorTotal;
     }
@@ -26,11 +27,11 @@ public class Comanda {
         Numero = numero;
     }
 
-    public float getValorTotal() {
+    public double getValorTotal() {
         return ValorTotal;
     }
 
-    public void setValorTotal(float valorTotal) {
+    public void setValorTotal(double valorTotal) {
         this.ValorTotal = valorTotal;
     }
 
@@ -50,8 +51,13 @@ public class Comanda {
 
     }
 
-    public void CalcularValorTotal(){
+    public float CalcularValorTotal(float valor){
+        int soma = 0;
 
+        for (Produto produto : Produto) {
+            soma += produto.getValor();
+        }
+
+        return soma;
     }
-
 }
