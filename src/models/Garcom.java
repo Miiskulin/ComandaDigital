@@ -33,11 +33,15 @@ public class Garcom {
     public void setId(int id) {
         Id = id;
     }
+
+    public void NovaComanda(Comanda comanda) {
+        this.Comandas.add(comanda);
+    }
     
     public void AplicarTaxaServico(int numeroComanda) {
         Comanda comanda = this.Comandas.stream().findAny().filter(x -> x.getNumero() == numeroComanda).get();
-        this.Comandas.remove(comanda);
-        comanda.setValorTotal(comanda.getValorTotal() * 0.10);
-        this.Comandas.add(comanda);
+        double valor = (comanda.CalcularValorTotal() * 0.10) + comanda.CalcularValorTotal();
+        System.out.println("Valor Total: R$ " + valor);
+        this.Comandas = new ArrayList<Comanda>();
     }
 }

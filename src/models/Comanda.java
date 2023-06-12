@@ -5,19 +5,15 @@ import java.util.List;
 
 public class Comanda {
     private int Numero;
-    private double ValorTotal;
-    private List<Produto> Produto = new ArrayList<>();
-    private Garcom Garcom;
+    private List<Produto> Produtos = new ArrayList<>();
 
     public Comanda(){
 
     }
 
-    public Comanda(int numero, double valorTotal){
+    public Comanda(int numero){
         Numero = numero;
-        ValorTotal = valorTotal;
     }
-
 
     public int getNumero() {
         return Numero;
@@ -27,37 +23,48 @@ public class Comanda {
         Numero = numero;
     }
 
-    public double getValorTotal() {
-        return ValorTotal;
+    public String VisualizarComanda(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("Informações da Comanda: ");
+        sb.append("Comanda: ");
+        sb.append(Numero + "\n");
+        sb.append("Produtos:");
+        for (Produto prod : Produtos) {
+            sb.append(prod + "\n");
+        }
+        sb.append("Valor Total: R$");
+        sb.append(CalcularValorTotal() + "\n");
+        return sb.toString();
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.ValorTotal = valorTotal;
+    public void AdicionarItem(Produto produto){
+        this.Produtos.add(produto);
     }
 
-    public void VisualizarComanda(){
-
+    public void RemoverItem(Produto produto) {
+        this.Produtos.remove(produto);
     }
 
-    public void AdicionarItem(){
-
+    public Produto getProduto(Integer codigo) {
+        return this.Produtos.stream().filter(x -> x.getItemProduto().getCodigo() == codigo).findFirst().get();
     }
 
-    public void RemoverItem(){
+    public String FinalizarComanda(){
+        this.Produtos = new ArrayList<Produto>();
 
+        StringBuilder sb = new StringBuilder();
+        sb.append("Comanda " + Numero + " finalizada com sucesso!");
+
+        return sb.toString();
     }
 
-    public void FinalizarComanda(){
+    public float CalcularValorTotal(){
+        float sum = 0;
 
-    }
-
-    public float CalcularValorTotal(float valor){
-        int soma = 0;
-
-        for (Produto produto : Produto) {
-            soma += produto.getValor();
+        for (Produto produto : Produtos) {
+            sum += produto.CalcularValorProduto();
         }
 
-        return soma;
+        return sum;
     }
 }
