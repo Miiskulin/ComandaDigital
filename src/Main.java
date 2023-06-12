@@ -13,12 +13,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Integer opcao = 1;
-        Integer opcaoMenu2 = 2;
+
 
         while (opcao != 2) {
-            System.out.println("BEM VINDO AO SISTEMA X:");
-
-            System.out.println("MENU:");
+            System.out.println("BEM VINDO AO SISTEMA DE COMANDA DIGITAL:");
             System.out.println("1 - INICIAR COMANDA:");
             System.out.println("2 - SAIR:");
             opcao = sc.nextInt();
@@ -40,6 +38,8 @@ public class Main {
                     Comanda comanda = new Comanda(numeroComanda);
 
                     garcom.NovaComanda(comanda);
+
+                    Integer opcaoMenu2 = 2;
 
                     while (opcaoMenu2 != 5) {
                         System.out.println("1 - ADICIONAR PRODUTO:");
@@ -79,10 +79,13 @@ public class Main {
                                 System.out.print("Digite o codigo do produto que quer remover: ");
                                 Integer codigoRemover = sc.nextInt();
                                 sc.nextLine();
-
-                                Produto prodRemove = comanda.getProduto(codigoRemover);
-                                comanda.RemoverItem(prodRemove);
-                                System.out.println("Produto removido com sucesso!\n");
+                                try{
+                                    Produto prodRemove = comanda.getProduto(codigoRemover);
+                                    comanda.RemoverItem(prodRemove);
+                                    System.out.println("Produto removido com sucesso!\n");
+                                } catch (Exception e){
+                                    System.out.println("Código inválido! \n");
+                                }
                                 comanda.CalcularValorTotal();
                                 break;
                             case 3:
@@ -97,6 +100,7 @@ public class Main {
                                 break;
                             case 5:
                                 break;
+
                             default:
                                 break;
                         }

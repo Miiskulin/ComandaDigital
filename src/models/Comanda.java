@@ -25,14 +25,14 @@ public class Comanda {
 
     public String VisualizarComanda(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Informações da Comanda: ");
-        sb.append("Comanda: ");
+        sb.append("Informações da Comanda: \n");
+        sb.append("Numero da comanda: ");
         sb.append(Numero + "\n");
-        sb.append("Produtos:");
+        sb.append("Produtos: \n");
         for (Produto prod : Produtos) {
             sb.append(prod + "\n");
         }
-        sb.append("Valor Total: R$");
+        sb.append("Valor Total da Comanda: R$");
         sb.append(CalcularValorTotal() + "\n");
         return sb.toString();
     }
@@ -53,7 +53,7 @@ public class Comanda {
         this.Produtos = new ArrayList<Produto>();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Comanda " + Numero + " finalizada com sucesso!");
+        sb.append("Comanda " + Numero + " finalizada com sucesso! \n");
 
         return sb.toString();
     }

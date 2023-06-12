@@ -48,6 +48,7 @@ public class ItemProduto {
     public void setDescricao(String descricao) {
         Descricao = descricao;
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
